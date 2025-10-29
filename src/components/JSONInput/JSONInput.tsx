@@ -5,7 +5,7 @@ import { useJSONInput } from "./useJSONInput";
 const JSONInput = () => {
   const { jsonInput, setJsonInput, handleSubmit } = useJSONInput();
   return (
-    <div className="flex flex-col gap-4 ">
+    <div className="flex flex-col gap-4">
       {/*TextArea reusable input field */}
       <TextArea
         name="jsonInput"
