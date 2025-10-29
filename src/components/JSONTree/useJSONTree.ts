@@ -4,31 +4,36 @@ import { useReactFlow } from "reactflow";
 import { toast } from "react-toastify";
 import * as htmlToImage from "html-to-image";
 export const useJSONTree = () => {
-  const { nodes, edges } = useJSONContext();
+  const { nodes, edges, originalNodes, setNodes } = useJSONContext();
   const [search, setSearch] = useState<string>("");
-  const { setNodes, getNodes, setCenter } = useReactFlow();
+  const { setCenter } = useReactFlow();
   const flowWrapper = useRef<HTMLDivElement>(null);
+
+  //Search and set nodes
   const handleSearch = () => {
     if (!search.trim()) return;
+    console.log(originalNodes);
 
-    const allNodes = getNodes();
-    const matchedNode = allNodes.find(
+    const matchedNode = originalNodes.find(
       (n) => n.data?.path?.toLowerCase() === search.trim().toLowerCase()
     );
 
     if (matchedNode) {
-      // Highlight the matched node
-      setNodes((nds) =>
-        nds.map((n) => ({
-          ...n,
-          style: {
-            ...n.style,
-            border:
-              n.id === matchedNode.id
-                ? "3px solid #F43F5E" // pink border for highlight
-                : "1px solid #333",
-          },
-        }))
+      // Start fresh from original nodes before applying highlight
+      setNodes(
+        originalNodes.map((n) =>
+          n.id === matchedNode.id
+            ? {
+                ...n,
+                style: {
+                  ...n.style,
+                  border: "3px solid #F43F5E",
+                  backgroundColor: "#FCE7F3",
+                  transition: "all 0.3s ease",
+                },
+              }
+            : n
+        )
       );
 
       // Center view on the matched node

@@ -23,8 +23,10 @@ export interface JSONProviderProp {
 export interface JSONContextProps {
   nodes: JSONNode[];
   edges: Edge[];
-  setNodes: (val: JSONNode[]) => void;
-  setEdges: (val: Edge[]) => void;
+  originalNodes: JSONNode[];
+  setOriginalNodes: React.Dispatch<React.SetStateAction<JSONNode[]>>;
+  setNodes: React.Dispatch<React.SetStateAction<JSONNode[]>>;
+  setEdges: React.Dispatch<React.SetStateAction<Edge[]>>;
 }
 
 export const JSONContext = createContext<JSONContextProps | null>(null);
@@ -41,9 +43,13 @@ const JSONProvider: React.FC<JSONProviderProp> = ({ children }) => {
   const [nodes, setNodes] = useState<JSONNode[]>([]);
   const [edges, setEdges] = useState<Edge[]>([]);
 
+  const [originalNodes, setOriginalNodes] = useState<JSONNode[]>([]);
+
   const contextValue: JSONContextProps = {
     nodes,
     edges,
+    originalNodes,
+    setOriginalNodes,
     setEdges,
     setNodes,
   };

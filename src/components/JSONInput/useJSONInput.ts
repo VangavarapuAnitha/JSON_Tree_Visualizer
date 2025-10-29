@@ -4,7 +4,7 @@ import { jsonConvertion } from "../../shared/utils/jsonConvertion";
 import { useJSONContext } from "../../context/JSONProvider";
 
 export const useJSONInput = () => {
-  const { setNodes, setEdges } = useJSONContext();
+  const { setNodes, setEdges, setOriginalNodes } = useJSONContext();
   //State for input field
   const [jsonInput, setJsonInput] = useState<string>("");
 
@@ -47,10 +47,18 @@ export const useJSONInput = () => {
       }
       setNodes(finalNodes);
       setEdges(finalEdges);
+      setOriginalNodes(JSON.parse(JSON.stringify(finalNodes)));
     } catch (error) {
       toast.error("Invalid JSON format");
     }
   }, [jsonInput]);
 
-  return { jsonInput, setJsonInput, handleSubmit };
+  const handleClear = () => {
+    setJsonInput("");
+    setNodes([]);
+    setEdges([]);
+    setOriginalNodes([]);
+  };
+
+  return { jsonInput, setJsonInput, handleSubmit, handleClear };
 };
