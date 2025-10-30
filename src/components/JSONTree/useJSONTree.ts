@@ -26,47 +26,57 @@ export const useJSONTree = () => {
 
   //Search and set nodes
   const handleSearch = useCallback(() => {
-    if (!search.trim()) {
-      console.log("@@@");
-      setNodes((prevNodes) =>
-        prevNodes.map((n) => {
-          const originalStyle =
-            originalNodes.find((on) => on.id === n.id)?.style || n.style;
-          return { ...n, style: { ...originalStyle } };
-        })
-      );
+    const trimmed = search.trim().toLowerCase();
+
+    // Reset to original nodes if search is empty string and fit view
+    if (!trimmed) {
+      setNodes(originalNodes.map((n) => ({ ...n, style: { ...n.style } })));
+      fitView({ padding: 0.4, includeHiddenNodes: true });
       return;
     }
-    console.log(originalNodes);
 
+    // Find match using originalNodes
     const matchedNode = originalNodes.find(
-      (n) => n.data?.path?.toLowerCase() === search.trim().toLowerCase()
+      (n) => n.data?.path?.toLowerCase() === trimmed
     );
 
-    if (matchedNode) {
-      const updatedNodes = originalNodes.map((n) =>
-        n.id === matchedNode.id
-          ? {
-              ...n,
-              style: {
-                ...n.style,
-                border: "3px solid #F43F5E",
-                backgroundColor: "#FCE7F3",
-                transition: "all 0.3s ease",
-              },
-            }
-          : n
-      );
-
-      setNodes(updatedNodes);
-
-      // Center view on the matched node
-      const { x, y } = matchedNode.position;
-      setCenter(x, y, { zoom: 1.5, duration: 800 });
-      toast.success("Match found!");
-    } else {
+    //No match found
+    if (!matchedNode) {
       toast.error("No match found!");
+      return;
     }
+
+    // Reset nodes if match found
+    setNodes(
+      originalNodes.map((n) => {
+        // Copy base node style
+        const baseStyle = n.style ? { ...n.style } : {};
+
+        if (n.id === matchedNode.id) {
+          return {
+            ...n,
+            style: {
+              ...baseStyle,
+              border: "3px solid #F43F5E",
+              background: "#FCE7F3",
+              boxShadow: "0 0 10px #F43F5E",
+              transition: "all 0.3s ease",
+            },
+          };
+        }
+
+        // Otherwise, restore to original style
+        return {
+          ...n,
+          style: { ...baseStyle },
+        };
+      })
+    );
+
+    // Center view on the matched node
+    const { x, y } = matchedNode.position;
+    setCenter(x, y, { zoom: 1.5, duration: 800 });
+    toast.success("Match found!");
   }, [originalNodes, search, setNodes, setCenter]);
 
   //Download flow chart as image
