@@ -48,9 +48,9 @@ const JSONProvider: React.FC<JSONProviderProp> = ({ children }) => {
   const [originalNodes, setOriginalNodes] = useState<JSONNode[]>([]);
   const [search, setSearch] = useState<string>("");
 
-  // useEffect(() => {
-  //   console.log("###", originalNodes);
-  // }, [originalNodes]);
+  useEffect(() => {
+    console.log("###", originalNodes);
+  }, [originalNodes]);
 
   const contextValue: JSONContextProps = {
     nodes,
