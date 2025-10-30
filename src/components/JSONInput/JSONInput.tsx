@@ -26,12 +26,12 @@ const JSONInput = () => {
         <Button
           label="Clear"
           onClick={handleClear}
-          className="text-sm md:text-lg  bg-amber-500 hover:bg-amber-600 text-white px-1 md:px-2   rounded-lg shadow-md transition-all"
+          className="text-sm md:text-lg  bg-amber-500 hover:bg-amber-600 text-white px-2 md:px-2.5   rounded-[14px] shadow-md transition-all"
         />
         <Button
           label="Generate Tree"
           onClick={handleSubmit}
-          className=" flex text-sm md:text-lg px-1 md:px-2  pb-0.5 md:py-0 bg-indigo-600 hover:bg-indigo-700 text-white  rounded-lg shadow-md transition-all"
+          className=" flex text-sm md:text-lg px-2 md:px-2.5  pb-0.5 md:py-0 bg-indigo-600 hover:bg-indigo-700 text-white  rounded-[14px] shadow-md transition-all"
         />
       </div>
     </div>

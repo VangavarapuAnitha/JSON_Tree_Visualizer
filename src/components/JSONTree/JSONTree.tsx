@@ -43,13 +43,13 @@ const JSONTreeContent = () => {
           <Button
             label="Search"
             onClick={handleSearch}
-            className="text-sm md:text-lg  bg-amber-500 hover:bg-amber-600 text-white px-1.5 md:px-2 pb-0.5 md:py-0  rounded-lg shadow-md transition-all"
+            className="text-sm md:text-lg  bg-amber-500 hover:bg-amber-600 text-white px-2 md:px-2.5   rounded-[14px] shadow-md transition-all"
         />
           <Button
             label="Download"
             onClick={handleDownload}
             className={cn(
-              " flex text-sm md:text-lg px-1.5 md:px-2  bg-indigo-600 hover:bg-indigo-700 text-white  rounded-lg shadow-md transition-all",
+              " flex text-sm md:text-lg px-2 md:px-2.5  bg-indigo-600 hover:bg-indigo-700 text-white  rounded-[14px] shadow-md transition-all",
               nodes.length === 0 && "pointer-events-none opacity-50"
             )}
 
