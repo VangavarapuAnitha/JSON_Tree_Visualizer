@@ -31,7 +31,7 @@ const JSONTreeContent = () => {
           onChange={setSearch}
           classNames={{
             input:
-              "flex-1 min-w-[180px] border border-gray-300 rounded-md px-2 py-1 focus:ring-2 focus:ring-indigo-500",
+              "flex-1 min-w-[180px] border border-gray-300 rounded-md px-2 py-1 focus:ring-2 focus:ring-indigo-500 focus:outline-none",
           }}
         />
         <div className="flex gap-2">
