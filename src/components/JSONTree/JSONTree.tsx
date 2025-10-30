@@ -8,6 +8,7 @@ import ReactFlow, {
 import "reactflow/dist/style.css";
 import { TextInput } from "../../shared/TextInput";
 import { Button } from "../../shared/Button";
+import { cn } from "../../shared/utils/cn";
 
 const JSONTreeContent = () => {
   const {
@@ -42,7 +43,10 @@ const JSONTreeContent = () => {
           <Button
             label="Download"
             onClick={handleDownload}
-            className="bg-indigo-600 border-indigo-600 text-white px-2 hover:bg-indigo-700"
+            className={cn(
+              "bg-indigo-600 border-indigo-600 text-white px-2 hover:bg-indigo-700",
+              nodes.length === 0 && "pointer-events-none"
+            )}
           />
         </div>
       </div>
