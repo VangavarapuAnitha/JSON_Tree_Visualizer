@@ -6,7 +6,7 @@ const JSONInput = () => {
   const { jsonInput, setJsonInput, handleSubmit, handleClear } = useJSONInput();
   return (
     <div className="flex flex-col gap-2 md:gap-4 h-full">
-        <h2 className="text-sm md:text-lg font-semibold  text-indigo-600">
+        <h2 className="text-sm md:text-lg font-semibold  text-indigo-600 shrink-0">
             JSON Input
           </h2>
       {/*TextArea reusable input field */}
@@ -15,13 +15,13 @@ const JSONInput = () => {
         value={jsonInput}
         onChange={(val: string) => setJsonInput(val)}
         classNames={{
-          mainDiv:"flex-1 bg-white",
+          mainDiv:"flex-1 bg-white min-h-0 overflow-hidden",
           input:
-            "w-full border rounded-lg border-gray-300 p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none shadow-sm",
+            "w-full h-full overflow-y-auto border rounded-lg border-gray-300 p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none shadow-sm",
         }}
       />
     
-      <div className="flex justify-end gap-2 ">
+      <div className="flex justify-end gap-2 shrink-0">
         {/*Reusble button */}
         <Button
           label="Clear"

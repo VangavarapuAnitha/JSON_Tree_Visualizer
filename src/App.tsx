@@ -12,7 +12,7 @@ function App() {
         {/*Input Field for json */}
         <div
           className={cn(
-            "w-full md:w-2/5 h-auto md:h-full p-4 pb-0 md:pb-4  flex flex-col"
+            "w-full md:w-2/5 h-auto md:h-full p-4 pb-0 md:pb-4  flex flex-col max-h-[40vh] md:md:max-h-none"
           )}
         >
           <JSONInput />
@@ -20,7 +20,7 @@ function App() {
         {/*React flow */}
         <div
           className={cn(
-            " w-full flex-1 py-0 px-4 md:p-4 relative overflow-hidden"
+            " w-full flex-1 py-0 px-4 md:p-4 relative overflow-hidden min-h-[55vh] md:min-h-0"
           )}
         >
           <JSONTree />

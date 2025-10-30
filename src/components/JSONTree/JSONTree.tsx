@@ -50,7 +50,7 @@ const JSONTreeContent = () => {
             onClick={handleDownload}
             className={cn(
               " flex text-sm md:text-lg px-1.5 md:px-2  bg-indigo-600 hover:bg-indigo-700 text-white  rounded-lg shadow-md transition-all",
-              nodes.length === 0 && "pointer-events-none"
+              nodes.length === 0 && "pointer-events-none opacity-50"
             )}
 
           />
@@ -61,7 +61,7 @@ const JSONTreeContent = () => {
     
       <div
         ref={flowWrapper}
-        className="flex-1 h-full bg-white rounded-lg shadow-md border border-gray-200 "
+        className="flex-1 min-h-0 bg-white rounded-lg shadow-md border border-gray-200 relative"
       >
         <ReactFlow
           nodes={nodes}
@@ -72,6 +72,7 @@ const JSONTreeContent = () => {
           className="w-full h-full"
         >
           <MiniMap
+          className="hidden md:block"
             nodeColor={(node) =>
               node.type === "object"
                 ? "#4F46E5"
@@ -80,7 +81,7 @@ const JSONTreeContent = () => {
                 : "#F59E0B"
             }
           />
-          <Controls />
+          <Controls className="left-2! bottom-2! md:left-auto! md:bottom-auto!"/>
           <Background  />
         </ReactFlow>
       </div>
