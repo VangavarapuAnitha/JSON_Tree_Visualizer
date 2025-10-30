@@ -30,7 +30,7 @@ export const jsonConvertion = (jsonData: Record<string, any> | any[]) => {
             ? "#4F46E5" // blue
             : type === "array"
             ? "#10B981" // green
-            : "#F59E0B", // orange (primitive)
+            : type==="primitive"?"#F59E0B":"red", // orange (primitive) red (value)
         color: "white",
         border: "1px solid #333",
         padding: 8,

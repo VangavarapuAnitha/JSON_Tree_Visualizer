@@ -15,7 +15,7 @@ const JSONInput = () => {
         value={jsonInput}
         onChange={(val: string) => setJsonInput(val)}
         classNames={{
-          mainDiv:"flex-1 bg-white min-h-0 overflow-hidden",
+          mainDiv:"flex-1 bg-white min-h-0 ",
           input:
             "w-full h-full overflow-y-auto border rounded-lg border-gray-300 p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none shadow-sm",
         }}

@@ -46,13 +46,25 @@ export const useJSONTree = () => {
       return;
     }
 
+     let targetNode = matchedNode;
+
+  // If primitive, find its corresponding value child
+  if (matchedNode.type === "primitive") {
+    const valueChild = originalNodes.find(
+      (n) =>
+        n.data?.path?.startsWith(matchedNode.data?.path) &&
+        n.type === "value" &&
+        n.data?.level === matchedNode.data?.level + 1
+    );
+    if (valueChild) targetNode = valueChild;
+  }
     // Reset nodes if match found
     setNodes(
       originalNodes.map((n) => {
         // Copy base node style
         const baseStyle = n.style ? { ...n.style } : {};
 
-        if (n.id === matchedNode.id) {
+        if (n.id === targetNode.id) {
           return {
             ...n,
             style: {
@@ -74,7 +86,7 @@ export const useJSONTree = () => {
     );
 
     // Center view on the matched node
-    const { x, y } = matchedNode.position;
+    const { x, y } = targetNode.position;
     setCenter(x, y, { zoom: 1.5, duration: 800 });
     toast.success("Match found!");
   }, [originalNodes, search, setNodes, setCenter]);
