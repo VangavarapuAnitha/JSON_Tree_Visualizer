@@ -7,28 +7,22 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
-    <div className="flex flex-col md:flex-row   min-h-screen bg-gray-50 text-gray-900 overflow-hidden">
+    <div className="flex flex-col md:flex-row  h-screen bg-gray-50 text-gray-900">
       <JSONProvider>
         {/*Input Field for json */}
         <div
           className={cn(
-            "w-full md:w-2/5 p-4 bg-white shadow-md border-b md:border-r border-gray-200 flex flex-col"
+            "w-full md:w-2/5 h-auto md:h-full p-4 pb-0 md:pb-4  flex flex-col"
           )}
         >
-          <h2 className="text-xl font-semibold mb-4 text-indigo-600">
-            JSON Input
-          </h2>
           <JSONInput />
         </div>
         {/*React flow */}
         <div
           className={cn(
-            "flex-1 p-2 md:p-4 relative overflow-hidden h-[60vh] md:h-auto"
+            " w-full flex-1 py-0 px-4 md:p-4 relative overflow-hidden"
           )}
         >
-          <h2 className="text-xl font-semibold mb-2 text-indigo-600">
-            JSON Flow Diagram
-          </h2>
           <JSONTree />
         </div>
       </JSONProvider>

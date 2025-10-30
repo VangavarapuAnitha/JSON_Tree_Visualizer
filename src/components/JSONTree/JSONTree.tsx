@@ -22,38 +22,46 @@ const JSONTreeContent = () => {
   } = useJSONTree();
 
   return (
-    <div className="w-full h-full flex flex-col">
+    <div className="h-full flex flex-col gap-1 md:gap-4">
+       <h2 className="shrink-0 text-sm md:text-lg font-semibold text-indigo-600">
+            JSON Flow Diagram
+         </h2>
       {/*Search and Download image */}
-      <div className="flex flex-wrap items-center justify-between gap-2 mb-3 bg-white p-3 rounded-lg shadow-md border border-gray-200">
+      <div className="shrink-0">
+      <div className="flex flex-col md:flex-row  md:justify-between gap-2 bg-white p-2 rounded-lg shadow-md border border-gray-200">
         <TextInput
           name="search"
           value={search}
           onChange={setSearch}
           classNames={{
+            mainDiv:"flex-1",
             input:
-              "flex-1 min-w-[180px] border border-gray-300 rounded-md px-2 py-1 focus:ring-2 focus:ring-indigo-500 focus:outline-none",
+              "border border-gray-300 rounded-md px-2 py-1 focus:ring-2 focus:ring-indigo-500 focus:outline-none",
           }}
         />
-        <div className="flex gap-2">
+        <div className="flex gap-2 justify-end">
           <Button
             label="Search"
             onClick={handleSearch}
-            className="bg-amber-500 text-white border-amber-500 hover:bg-amber-600 px-2"
-          />
+            className="text-sm md:text-lg  bg-amber-500 hover:bg-amber-600 text-white px-1.5 md:px-2 pb-0.5 md:py-0  rounded-lg shadow-md transition-all"
+        />
           <Button
             label="Download"
             onClick={handleDownload}
             className={cn(
-              "bg-indigo-600 border-indigo-600 text-white px-2 hover:bg-indigo-700",
+              " flex text-sm md:text-lg px-1.5 md:px-2  bg-indigo-600 hover:bg-indigo-700 text-white  rounded-lg shadow-md transition-all",
               nodes.length === 0 && "pointer-events-none"
             )}
+
           />
+        </div>
         </div>
       </div>
       {/*React flow chart*/}
+    
       <div
         ref={flowWrapper}
-        className="flex-1 h-full min-h-[300px] bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden"
+        className="flex-1 h-full bg-white rounded-lg shadow-md border border-gray-200 "
       >
         <ReactFlow
           nodes={nodes}
@@ -73,10 +81,11 @@ const JSONTreeContent = () => {
             }
           />
           <Controls />
-          <Background gap={16} />
+          <Background  />
         </ReactFlow>
       </div>
-    </div>
+      </div>
+
   );
 };
 

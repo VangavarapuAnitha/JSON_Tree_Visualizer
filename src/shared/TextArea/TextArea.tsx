@@ -34,7 +34,7 @@ const TextArea: React.FC<TextAreaProps> = ({
         name={name}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className={cn("border rounded-lg p-2", classNames?.input)}
+        className={cn("border flex-1 rounded-lg p-2", classNames?.input)}
       />
       {error && (
         <p className={cn("text-sm text-red-500", classNames?.error)}>{error}</p>
