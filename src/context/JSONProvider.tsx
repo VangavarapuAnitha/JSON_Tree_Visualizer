@@ -1,6 +1,7 @@
 import React, {
   createContext,
   useContext,
+  useEffect,
   useState,
   type ReactNode,
 } from "react";
@@ -24,6 +25,8 @@ export interface JSONContextProps {
   nodes: JSONNode[];
   edges: Edge[];
   originalNodes: JSONNode[];
+  search: string;
+  setSearch: (val: string) => void;
   setOriginalNodes: React.Dispatch<React.SetStateAction<JSONNode[]>>;
   setNodes: React.Dispatch<React.SetStateAction<JSONNode[]>>;
   setEdges: React.Dispatch<React.SetStateAction<Edge[]>>;
@@ -42,13 +45,19 @@ export const useJSONContext = () => {
 const JSONProvider: React.FC<JSONProviderProp> = ({ children }) => {
   const [nodes, setNodes] = useState<JSONNode[]>([]);
   const [edges, setEdges] = useState<Edge[]>([]);
-
   const [originalNodes, setOriginalNodes] = useState<JSONNode[]>([]);
+  const [search, setSearch] = useState<string>("");
+
+  // useEffect(() => {
+  //   console.log("###", originalNodes);
+  // }, [originalNodes]);
 
   const contextValue: JSONContextProps = {
     nodes,
     edges,
     originalNodes,
+    search,
+    setSearch,
     setOriginalNodes,
     setEdges,
     setNodes,

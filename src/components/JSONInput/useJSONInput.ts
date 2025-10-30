@@ -4,7 +4,7 @@ import { jsonConvertion } from "../../shared/utils/jsonConvertion";
 import { useJSONContext } from "../../context/JSONProvider";
 
 export const useJSONInput = () => {
-  const { setNodes, setEdges, setOriginalNodes } = useJSONContext();
+  const { setNodes, setEdges, setOriginalNodes, setSearch } = useJSONContext();
   //State for input field
   const [jsonInput, setJsonInput] = useState<string>("");
 
@@ -45,10 +45,11 @@ export const useJSONInput = () => {
         toast.warning("No nodes generated from JSON");
         return;
       }
+      setOriginalNodes(finalNodes);
       setNodes(finalNodes);
       setEdges(finalEdges);
-      setOriginalNodes(JSON.parse(JSON.stringify(finalNodes)));
     } catch (error) {
+      console.log("Error in JSONInput:", error);
       toast.error("Invalid JSON format");
     }
   }, [jsonInput]);
@@ -58,6 +59,7 @@ export const useJSONInput = () => {
     setNodes([]);
     setEdges([]);
     setOriginalNodes([]);
+    setSearch("");
   };
 
   return { jsonInput, setJsonInput, handleSubmit, handleClear };

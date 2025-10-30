@@ -1,10 +1,8 @@
 import { useJSONTree } from "./useJSONTree";
-import { useEffect } from "react";
 import ReactFlow, {
   Background,
   Controls,
   MiniMap,
-  useReactFlow,
   ReactFlowProvider,
 } from "reactflow";
 import "reactflow/dist/style.css";
@@ -21,23 +19,10 @@ const JSONTreeContent = () => {
     setSearch,
     handleSearch,
   } = useJSONTree();
-  const { fitView } = useReactFlow();
-
-  useEffect(() => {
-    if (nodes.length > 0) {
-      const resizeHandler = () => {
-        fitView({ padding: 0.4, includeHiddenNodes: true });
-      };
-
-      resizeHandler();
-      window.addEventListener("resize", resizeHandler);
-
-      return () => window.removeEventListener("resize", resizeHandler);
-    }
-  }, [nodes, fitView]);
 
   return (
     <div className="w-full h-full flex flex-col">
+      {/*Search and Download image */}
       <div className="flex flex-wrap items-center justify-between gap-2 mb-3 bg-white p-3 rounded-lg shadow-md border border-gray-200">
         <TextInput
           name="search"
@@ -61,6 +46,7 @@ const JSONTreeContent = () => {
           />
         </div>
       </div>
+      {/*React flow chart*/}
       <div
         ref={flowWrapper}
         className="flex-1 h-full min-h-[300px] bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden"

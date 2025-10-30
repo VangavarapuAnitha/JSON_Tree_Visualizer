@@ -15,6 +15,7 @@ const getNodeType = (value: any) => {
   return "primitive";
 };
 
+//Building tree
 export const buildTree = (
   data: any,
   label: string,
